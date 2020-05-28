@@ -9,7 +9,7 @@ public class Dienblad {
      * Constructor
      */
     public Dienblad() {
-        // method body omitted
+        ArrayList Artikelen = new ArrayList();
     }
 
     /**
@@ -18,7 +18,7 @@ public class Dienblad {
      * @param artikel
      */
     public void voegToe(Artikel artikel) {
-        // method body omitted
+        artikelen.add(artikel);
     }
 
     /**
@@ -27,7 +27,8 @@ public class Dienblad {
      * @return Het aantal artikelen
      */
     public int getAantalArtikelen() {
-        // method body omitted
+       int aantalArtikelen = artikelen.size();
+       return aantalArtikelen;
     }
 
     /**
@@ -36,7 +37,9 @@ public class Dienblad {
      * @return De totaalprijs
      */
     public double getTotaalPrijs() {
-        // method body omitted
+        while (artikelen.hasNext()) {
+            float totaalPrijs = totaalPrijs + Artikel.prijs;
+        }
     }
 }
 

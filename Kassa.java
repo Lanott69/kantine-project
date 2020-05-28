@@ -2,11 +2,14 @@ import java.util.Iterator;
 
 public class Kassa {
 
+    private int geldInKassa;
+    private int gepasseerdeArtikelen;
+
     /**
      * Constructor
      */
     public Kassa(KassaRij kassarij) {
-        // method body omitted
+        this.kassarij;
     }
 
     /**
@@ -17,7 +20,8 @@ public class Kassa {
      * @param klant die moet afrekenen
      */
     public void rekenAf(Dienblad klant) {
-        // method body omitted
+        klant.getAantalArtikelen();
+        klant.getTotaalPrijs();
     }
 
     /**
@@ -27,7 +31,8 @@ public class Kassa {
      * @return aantal artikelen
      */
     public int aantalArtikelen() {
-        // method body omitted
+        gepasseerdeArtikelen = gepasseerdeArtikelen + klant.getArtikelen();
+        return gepasseerdeArtikelen;
     }
 
     /**
@@ -37,7 +42,8 @@ public class Kassa {
      * @return hoeveelheid geld in de kassa
      */
     public double hoeveelheidGeldInKassa() {
-        // method body omitted
+        geldInKassa = geldInKassa + getTotaalPrijs();
+        return geldInKassa;
     }
 
     /**
@@ -45,6 +51,7 @@ public class Kassa {
      * kassa.
      */
     public void resetKassa() {
-        // method body omitted
+        geldInKassa = 0;
+        gepasseerdeArtikelen = 0;
     }
 }

@@ -4,12 +4,18 @@ import java.util.Stack;
 
 public class Dienblad {
     private ArrayList<Artikel> artikelen;
+    private ArrayList<Persoon> klanten;
 
     /**
      * Constructor
      */
     public Dienblad() {
-        ArrayList Artikelen = new ArrayList();
+        ArrayList artikelen = new ArrayList();
+    }
+
+    public Dienblad(Persoon klant) {
+        ArrayList<Persoon> klanten = new ArrayList();
+        klanten.add(klant);
     }
 
     /**

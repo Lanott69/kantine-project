@@ -1,96 +1,102 @@
-public class Persoon {
 
+/**
+ * Write a description of class Persoon here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+public class Persoon
+{
     private int bsn;
     private String voornaam;
     private String achternaam;
-    private int dag = 0;
-    private int maand = 0;
-    private int jaar = 0;
+    private int dag;
+    private int maand;
+    private int jaar;
     private char geslacht;
-
-    public Persoon(bsn, voornaam, achternaam, dag, maand, jaar, geslacht) {
-        setBSN(bsn);
-        setVoornaam();
-        setAchternaam();
-        setGeboortedatum();
-        setGeslacht();
+    
+    public Persoon(int bsn, String voornaam, String achternaam, int geboorteDag, int geboorteMaand, int geboorteJaar, char geslacht)
+    {
+        this.bsn = bsn;
+        this.voornaam = voornaam;
+        this.achternaam = achternaam;
+        this.dag = geboorteDag;
+        this.maand = geboorteMaand;
+        this.jaar = geboorteJaar;
+        setGeslacht(geslacht);
     }
-
-    public Persoon() {
-
+    
+    public Persoon()
+    {
+        this.bsn = 0;
+        this.voornaam = "";
+        this.achternaam = "";
+        this.dag = 0;
+        this.maand = 0;
+        this.jaar = 0;
+        geslacht = 'U';
     }
-
-    private void setBSN(bsn) {
-        this.bsn;
+    
+    private void setBsn(int bsn)
+    {
+        this.bsn = bsn;
     }
-
-    private void setVoornaam(voornaam) {
-        this.voornaam;
+    
+    private void setNaam(String voornaam, String achternaam)
+    {
+        this.voornaam = voornaam;
+        this.achternaam = achternaam;
     }
-
-    private void setAchternaam(achternaam) {
-        this.achternaam;
+    
+    private void setGeboortedatum(int geboorteDag, int geboorteMaand, int geboorteJaar)
+    {
+        this.dag = geboorteDag;
+        this.maand = geboorteMaand;
+        this.jaar = geboorteJaar;
     }
-
-    private void setGeboortedatum(dag, maand, jaar) {
-        this.dag;
-        this.maand;
-        this.jaar;
-    }
-
-    private void setGeslacht(geslacht) {
-        if (geslacht == M || geslacht == V || geslacht == X) {
-            this.geslacht;
+    
+    private void setGeslacht(char geslacht)
+    {
+        if(geslacht == 'M' || geslacht == 'V' || geslacht == 'X')
+        {
+            this.geslacht = geslacht;
         }
-        else {
-            System.out.println("onbekend geslacht")
+        else
+        {
+            System.out.println("onmogelijk geslacht");
         }
     }
-
-    public int getBsn() {
+    
+    public int getBsn()
+    {
         return bsn;
     }
-
-    public String getVoornaam() {
-        return voornaam;
+    
+    public String getNaam()
+    {
+        return voornaam + achternaam;
     }
-
-    public String getAchternaam() {
-        return achternaam;
-    }
-
-    public String getGeboortedatum() {
-        if (dag != 0 && maand != 0 && jaar != 0) {
-            Datum.getDatumAsString();
-        }
-        else {
+    
+    public String getGeboortedatum()
+    {
+        Datum geboorteDatum = new Datum(dag, maand, jaar);
+        if(dag == 0 && maand == 0 && jaar == 0)
+        {
             return "Onbekend";
         }
+        else
+        {
+            return geboorteDatum.getDatumAsString();
+        }
     }
-
-    public char getGeslacht() {
-        String geslachtString = "";
-        if (geslacht == V) {
-            geslachtString == "Vrouw";
-        }
-        else if (geslacht == M) {
-            geslachtString == "Man";
-        }
-        else if (geslacht == X){
-            geslachtString == "Intersex";
-        }
-        else {
-            geslachtString == "Onbekend";
-        }
-
-        return geslachtString;
+    
+    public char getGeslacht()
+    {
+        return geslacht;
     }
-
-    public String toString() {
-        String informatie = bsn + " " + voornaam + " " + achternaam + " "
-                + dag + "-" + maand + "-" + jaar + " " + geslacht;
-        return info;
+    
+    public String toString()
+    {
+        return bsn + "\n" + getNaam() + "\n" + getGeboortedatum() + "\n" + geslacht;
     }
-
-
 }

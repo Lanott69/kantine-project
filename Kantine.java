@@ -24,8 +24,8 @@ public class Kantine {
      * Deze methode handelt de rij voor de kassa af.
      */
     public void verwerkRijVoorKassa() {
-        while (KassaRij.hasNext()) {
-            Kassa.rekenAf(KassaRij.next());
+        while () {
+            // omitted
         }
     }
 
@@ -35,7 +35,7 @@ public class Kantine {
      * @return hoeveelheid geld in kassa
      */
     public double hoeveelheidGeldInKassa() {
-        Kassa.hoeveelheidGeldInKAssa();
+        // method body omitted
     }
 
     /**
@@ -44,7 +44,7 @@ public class Kantine {
      * @return het aantal gepasseerde artikelen
      */
     public int aantalArtikelen() {
-        Kassa.aantalArtikelen();
+        // method body omitted
     }
 
     /**
@@ -52,6 +52,6 @@ public class Kantine {
      * de kassa.
      */
     public void resetKassa() {
-        Kassa.resetKassa();
+        // method body omitted
     }
 }

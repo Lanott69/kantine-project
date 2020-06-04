@@ -1,34 +1,48 @@
-public class Artikel {
+
+/**
+ * Write a description of class Artikel here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+public class Artikel
+{
     private String naam;
     private float prijs;
-
-    public Artikel(naam, prijs) {
-        this.naam;
-        this.prijs;
+    
+    public Artikel(String naam, float prijs)
+    {
+        this.naam = naam;
+        this.prijs = prijs;
+    }
+    
+    public Artikel()
+    {
+        
     }
 
-    public Artikel() {
-
+    private void setNaam(String naam)
+    {
+        this.naam = naam;
     }
-
-    private void setArtikelNaam(naam) {
-        this.naam;
+    
+    private void setPrijs(float prijs)
+    {
+        this.prijs = prijs;
     }
-
-    private void setArtikelPrijs(prijs) {
-        this.prijs;
-    }
-
-    public String getNaam() {
+    
+    public String getNaam()
+    {
         return naam;
     }
-
-    public void getPrijs() {
+    
+    public float getPrijs()
+    {
         return prijs;
     }
-
-    public String toString() {
-        String info = naam + " " + prijs;
-        return info;
+    
+    public String toString()
+    {
+        return naam + "\n" + prijs;
     }
 }

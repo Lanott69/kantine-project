@@ -53,4 +53,22 @@ public class Kassa {
         aantalArtikelen = 0;
         kassaInhoud = 0.0;
     }
+
+    public int dienbladArtikelen(Dienblad dienblad) {
+        int artikelenaantal = 0;
+        Iterator itr = dienblad.getIterator();
+        while (itr.hasNext()) {
+            artikelenaantal++;
+            itr.next();
+        } return artikelenaantal;
+    }
+
+    public double totaalPrijs(Dienblad dienblad) {
+        double totaal = 0;
+        Iterator itr = dienblad.getIterator();
+        while (itr.hasNext()) {
+            totaal += Artikel.getPrijs();
+            itr.next();
+        } return totaal;
+    }
 }

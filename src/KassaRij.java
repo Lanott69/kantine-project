@@ -3,13 +3,13 @@ import java.util.LinkedList;
 
 public class KassaRij {
     
-    private ArrayList<Dienblad> wachtenden;
+    private LinkedList<Dienblad> wachtenden;
 
     /**
      * Constructor
      */
     public KassaRij() {
-        ArrayList<Dienblad> wachtendeKlanten = new ArrayList();
+        LinkedList<Dienblad> wachtendeKlanten = new LinkedList();
     }
 
     /**
@@ -46,15 +46,15 @@ public class KassaRij {
      * @return Of er wel of geen rij bestaat
      */
     public boolean erIsEenRij() {
+        boolean isErEenRij;
         if(wachtenden.size() > 0)
         {
-            boolean isErEenRij = true;
-            return isErEenRij;
+            isErEenRij = true;
         }
         else
         {
-            boolean isErEenRij = false;
-            return isErEenRij;
+            isErEenRij = false;
         }
+        return isErEenRij;
     }
 }

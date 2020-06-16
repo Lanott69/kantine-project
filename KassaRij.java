@@ -4,13 +4,13 @@ import java.util.LinkedList;
 public class KassaRij {
     
     private LinkedList<Dienblad> wachtenden;
-    private Dienblad klant;
 
     /**
      * Constructor
      */
     public KassaRij() {
-        LinkedList<Dienblad> wachtenden = new LinkedList();
+        //LinkedList<Dienblad> wachtenden = new LinkedList();
+        this.wachtenden = new LinkedList<Dienblad>();
     }
 
     /**
@@ -19,7 +19,7 @@ public class KassaRij {
      * @param klant
      */
     public void sluitAchteraan(Dienblad klant) {
-        wachtenden.add(klant);
+        this.wachtenden.add(klant);
     }
 
     /**

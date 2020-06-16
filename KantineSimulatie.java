@@ -1,4 +1,8 @@
 import java.util.*;
+import javax.persistence.Persistence;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+
 
 public class KantineSimulatie {
 
@@ -20,6 +24,7 @@ public class KantineSimulatie {
 
     // prijzen
     private static double[] artikelprijzen = new double[] {1.50, 2.10, 1.65, 1.65};
+    private static double[] artikelKorting = new double[] {0.0, 0.0, 0.0, 0.0};
 
     // minimum en maximum aantal artikelen per soort
     private static final int MIN_ARTIKELEN_PER_SOORT = 10;
@@ -32,6 +37,11 @@ public class KantineSimulatie {
     // minimum en maximum artikelen per persoon
     private static final int MIN_ARTIKELEN_PER_PERSOON = 1;
     private static final int MAX_ARTIKELEN_PER_PERSOON = 4;
+    
+    private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("KantineSimulatie");
+    private EntityManager manager;
+    
+    private int dagKorting;
 
     /**
      * Constructor
@@ -42,9 +52,16 @@ public class KantineSimulatie {
         random = new Random();
         int[] hoeveelheden =
                 getRandomArray(AANTAL_ARTIKELEN, MIN_ARTIKELEN_PER_SOORT, MAX_ARTIKELEN_PER_SOORT);
-        kantineaanbod = new KantineAanbod(artikelnamen, artikelprijzen, hoeveelheden);
+        kantineaanbod = new KantineAanbod(artikelnamen, artikelprijzen, hoeveelheden, artikelKorting);
 
         kantine.setKantineAanbod(kantineaanbod);
+    }
+    
+    public void runVoorbeeld()
+    {
+        manager = ENTITY_MANAGER_FACTORY.createEntityManager();
+        manager.close();
+        ENTITY_MANAGER_FACTORY.close();
     }
 
     /**
@@ -109,6 +126,10 @@ public class KantineSimulatie {
             int aantalStudenten = 0;
             int aantalDocenten = 0;
             int aantalKantineMedewerkers = 0;
+            int dagKorting = getRandomValue(0, artikelnamen.length - 1);
+            
+            
+            kantine.getKantineAanbod().getArtikel(artikelnamen[dagKorting]).setKorting(artikelprijzen[dagKorting] * 0.2);
             
             for(int x = 0; x <= 100; x++)
             {

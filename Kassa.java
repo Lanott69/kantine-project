@@ -6,6 +6,7 @@ public class Kassa {
     private Dienblad dienblad;
     private int aantalArtikelen;
     private double kassaInhoud;
+    private int dagKorting;
 
     /**
      * Constructor
@@ -27,6 +28,8 @@ public class Kassa {
         double kortingsBedrag = 0.0;
         boolean heeftMaximum = false;
         
+        
+        
         if(klant instanceof KortingskaartHouder) {
             KortingskaartHouder kaarthouder = (KortingskaartHouder)klant;
             kortingsPercentage = kaarthouder.geefKortingsPercentage();
@@ -39,6 +42,8 @@ public class Kassa {
             {
                 kortingsBedrag = kaarthouder.geefMaximum();
             }
+            
+            
         }
         
         betaling -= kortingsBedrag;
@@ -50,25 +55,7 @@ public class Kassa {
         catch(TeWeinigGeldException e) {
             System.out.println(klant.getKlant().getNaam() + e.getMessage());
         }
-        /* if(klant.getKlant().getBetaalwijze().equals("contant")){
-            if(klant.getKlant().getBetaalwijze().betaal(betaling - kortingsBedrag))
-            {
-                kassaInhoud += betaling - kortingsBedrag;
-                aantalArtikelen += klant.getAantalArtikelen();
-            }
-        }
-        else if(klant.getKlant().getBetaalwijze().equals("pin"))
-        {
-            if(klant.getKlant().getBetaalwijze().betaal(betaling - kortingsBedrag)){
-                kassaInhoud += betaling - kortingsBedrag;
-                aantalArtikelen += klant.getAantalArtikelen();
-            }
-        }
-        else
-        {
-            System.out.println("niet genoeg saldo");
-        }
-        */
+        
     }
 
     /**

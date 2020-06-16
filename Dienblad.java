@@ -15,8 +15,8 @@ public class Dienblad {
     
     public Dienblad(Persoon persoon)
     {
+        this();
         this.klant = persoon;
-        Stack<Artikel> dienblad = new Stack();
     }
     
     private void setKlant(Persoon persoon)

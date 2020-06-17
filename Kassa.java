@@ -51,6 +51,7 @@ public class Kassa {
         try {
             klant.getKlant().getBetaalwijze().betaal(betaling);
             kassaInhoud += betaling;
+            aantalArtikelen += klant.getAantalArtikelen();
         }
         catch(TeWeinigGeldException e) {
             System.out.println(klant.getKlant().getNaam() + e.getMessage());

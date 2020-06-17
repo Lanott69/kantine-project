@@ -68,17 +68,11 @@ public class Persoon
         }
     }
     
-    private void setBetaalwijze(Betaalwijze betaalwijze)
+    public void setBetaalwijze(Betaalwijze betaalwijze)
     {
-        if(betaalwijze.equals("contant") || betaalwijze.equals("pin"))
-        {
-            this.betaalwijze = betaalwijze;
-        }
         
-        else
-        {
-            System.out.println("ongeldige betaalwijze");
-        }
+            this.betaalwijze = betaalwijze;
+        
     }
     
     public int getBsn()

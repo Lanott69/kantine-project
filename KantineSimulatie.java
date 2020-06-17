@@ -1,7 +1,7 @@
 import java.util.*;
-import javax.persistence.Persistence;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
+//import javax.persistence.Persistence;
+//import javax.persistence.EntityManager;
+//import javax.persistence.EntityManagerFactory;
 
 
 public class KantineSimulatie {
@@ -38,8 +38,8 @@ public class KantineSimulatie {
     private static final int MIN_ARTIKELEN_PER_PERSOON = 1;
     private static final int MAX_ARTIKELEN_PER_PERSOON = 4;
     
-    private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("KantineSimulatie");
-    private EntityManager manager;
+    //private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("KantineSimulatie");
+    //private EntityManager manager;
     
     private int dagKorting;
 
@@ -59,9 +59,9 @@ public class KantineSimulatie {
     
     public void runVoorbeeld()
     {
-        manager = ENTITY_MANAGER_FACTORY.createEntityManager();
-        manager.close();
-        ENTITY_MANAGER_FACTORY.close();
+        //manager = ENTITY_MANAGER_FACTORY.createEntityManager();
+        //manager.close();
+        //ENTITY_MANAGER_FACTORY.close();
     }
 
     /**
@@ -131,7 +131,7 @@ public class KantineSimulatie {
             
             kantine.getKantineAanbod().getArtikel(artikelnamen[dagKorting]).setKorting(artikelprijzen[dagKorting] * 0.2);
             
-            for(int x = 0; x <= 100; x++)
+            for(int x = 1; x <= 100; x++)
             {
                 int randomInt = random.nextInt(100);
                 if(randomInt == 1)
@@ -154,8 +154,27 @@ public class KantineSimulatie {
                 // maak persoon en dienblad aan, koppel ze
                 Student student = new Student();
                 Dienblad dienblad = new Dienblad(student);
+                int randomWijze = getRandomValue(1,2);
+                Contant contantbetaalwijze;
+                Pinpas pinbetaalwijze;
+                
+                if(randomWijze == 1)
+                {
+                    contantbetaalwijze = new Contant();
+                    student.setBetaalwijze(contantbetaalwijze);
+                    contantbetaalwijze.setSaldo(getRandomValue(10,100));
+                }
+                else
+                {
+                    pinbetaalwijze = new Pinpas();
+                    pinbetaalwijze.setKredietLimiet(getRandomValue(0,200));
+                    student.setBetaalwijze(pinbetaalwijze);
+                    pinbetaalwijze.setSaldo(getRandomValue(10,100));
+                }
+                
+                
                 // en bedenk hoeveel artikelen worden gepakt
-                 int aantalartikelen= getRandomValue(MIN_ARTIKELEN_PER_PERSOON,MAX_ARTIKELEN_PER_PERSOON);
+                int aantalartikelen= getRandomValue(MIN_ARTIKELEN_PER_PERSOON,MAX_ARTIKELEN_PER_PERSOON);
 
                 // genereer de "artikelnummers", dit zijn indexen
                 // van de artikelnamen
@@ -177,6 +196,23 @@ public class KantineSimulatie {
                 // maak persoon en dienblad aan, koppel ze
                 Docent docent = new Docent();
                 Dienblad dienblad = new Dienblad(docent);
+                int randomWijze = getRandomValue(1,2);
+                Contant contantbetaalwijze;
+                Pinpas pinbetaalwijze;
+                
+                if(randomWijze == 1)
+                {
+                    contantbetaalwijze = new Contant();
+                    docent.setBetaalwijze(contantbetaalwijze);
+                    contantbetaalwijze.setSaldo(getRandomValue(10,100));
+                }
+                else
+                {
+                    pinbetaalwijze = new Pinpas();
+                    pinbetaalwijze.setKredietLimiet(getRandomValue(0,200));
+                    docent.setBetaalwijze(pinbetaalwijze);
+                    pinbetaalwijze.setSaldo(getRandomValue(10,100));
+                }
                 // en bedenk hoeveel artikelen worden gepakt
                  int aantalartikelen= getRandomValue(MIN_ARTIKELEN_PER_PERSOON,MAX_ARTIKELEN_PER_PERSOON);
 
@@ -200,6 +236,23 @@ public class KantineSimulatie {
                 // maak persoon en dienblad aan, koppel ze
                 KantineMedewerker kantineMedewerker = new KantineMedewerker();
                 Dienblad dienblad = new Dienblad(kantineMedewerker);
+                int randomWijze = getRandomValue(1,2);
+                Contant contantbetaalwijze;
+                Pinpas pinbetaalwijze;
+                
+                if(randomWijze == 1)
+                {
+                    contantbetaalwijze = new Contant();
+                    kantineMedewerker.setBetaalwijze(contantbetaalwijze);
+                    contantbetaalwijze.setSaldo(getRandomValue(10,100));
+                }
+                else
+                {
+                    pinbetaalwijze = new Pinpas();
+                    pinbetaalwijze.setKredietLimiet(getRandomValue(0,200));
+                    kantineMedewerker.setBetaalwijze(pinbetaalwijze);
+                    pinbetaalwijze.setSaldo(getRandomValue(10,100));
+                }
                 // en bedenk hoeveel artikelen worden gepakt
                  int aantalartikelen= getRandomValue(MIN_ARTIKELEN_PER_PERSOON,MAX_ARTIKELEN_PER_PERSOON);
 
@@ -219,7 +272,7 @@ public class KantineSimulatie {
             }
 
             // verwerk rij voor de kassa
-            
+            kantine.verwerkRijVoorKassa();
             
             // druk de dagtotalen af en hoeveel personen binnen
 

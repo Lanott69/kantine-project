@@ -27,9 +27,21 @@ public class Kassa {
         double kortingsPercentage = 0.0;
         double kortingsBedrag = 0.0;
         boolean heeftMaximum = false;
+        double kortingsArtikelPrijs = 0.0;
+
+        for(int i = 0; i < KantineSimulatie.getKantine().getKantineAanbod().size(); i++)
+        {
+            if(KantineSimulatie.getKantine().getKantineAanbod().get(i).getKorting() != 0.0)
+            {
+                kortingsArtikelPrijs = KantineSimulatie.getKantine().getKantineAanbod().get(i).getPrijs();
+                betaling -= KantineSimulatie.getKantine().getKantineAanbod().get(i).getPrijs();
+            }
+        }
+
         
-        
-        
+
+
+
         if(klant instanceof KortingskaartHouder) {
             KortingskaartHouder kaarthouder = (KortingskaartHouder)klant;
             kortingsPercentage = kaarthouder.geefKortingsPercentage();
@@ -46,7 +58,7 @@ public class Kassa {
             
         }
         
-        betaling -= kortingsBedrag;
+        betaling = betaling - kortingsBedrag + kortingsArtikelPrijs;
         
         try {
             klant.getKlant().getBetaalwijze().betaal(betaling);

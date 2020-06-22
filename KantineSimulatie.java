@@ -1,7 +1,7 @@
 import java.util.*;
-//import javax.persistence.Persistence;
-//import javax.persistence.EntityManager;
-//import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 
 
 public class KantineSimulatie {
@@ -38,8 +38,8 @@ public class KantineSimulatie {
     private static final int MIN_ARTIKELEN_PER_PERSOON = 1;
     private static final int MAX_ARTIKELEN_PER_PERSOON = 4;
     
-    //private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("KantineSimulatie");
-    //private EntityManager manager;
+    private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("KantineSimulatie");
+    private EntityManager manager;
     
     private int dagKorting;
 
@@ -59,9 +59,14 @@ public class KantineSimulatie {
     
     public void runVoorbeeld()
     {
-        //manager = ENTITY_MANAGER_FACTORY.createEntityManager();
-        //manager.close();
-        //ENTITY_MANAGER_FACTORY.close();
+        manager = ENTITY_MANAGER_FACTORY.createEntityManager();
+        manager.close();
+        ENTITY_MANAGER_FACTORY.close();
+    }
+
+    public Kantine getKantine()
+    {
+        return kantine;
     }
 
     /**
@@ -111,6 +116,12 @@ public class KantineSimulatie {
         return artikelen;
     }
 
+    private void setDagKorting()
+    {
+        dagKorting = getRandomValue(0, artikelnamen.length - 1);
+        kantine.getKantineAanbod().getArtikel(artikelnamen[dagKorting]).setKorting(artikelprijzen[dagKorting] * 0.2);
+    }
+
     /**
      * Deze methode simuleert een aantal dagen
      * in het verloop van de kantine
@@ -126,10 +137,10 @@ public class KantineSimulatie {
             int aantalStudenten = 0;
             int aantalDocenten = 0;
             int aantalKantineMedewerkers = 0;
-            int dagKorting = getRandomValue(0, artikelnamen.length - 1);
+            setDagKorting();
             
             
-            kantine.getKantineAanbod().getArtikel(artikelnamen[dagKorting]).setKorting(artikelprijzen[dagKorting] * 0.2);
+
             
             for(int x = 1; x <= 100; x++)
             {
